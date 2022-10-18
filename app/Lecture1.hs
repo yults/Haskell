@@ -87,18 +87,18 @@ collatzSum n
 -- Case ------------------------------
 getFont :: Int -> String
 getFont n = case n of
-                 0 -> "PLAIN"
-                 1 -> "BOLD"
-                 2 -> "ITALIC"
-                 _ -> "UNKNOWN"
+                0 -> "PLAIN"
+                1 -> "BOLD"
+                2 -> "ITALIC"
+                _ -> "UNKNOWN"
 
 caseOperation 
   :: Char -> Int -> Int -> Int
 caseOperation op x y = 
     case op of
-         '+' -> x + y
-         '-' -> x - y
-         _   -> 0   -- _ should be 
+        '+' -> x + y
+        '-' -> x - y
+        _   -> 0   -- _ should be 
                     -- under ' and 
                     -- not under -
 --  caseOperation '+' 1 2 -- 3
