@@ -44,6 +44,8 @@ greet :: String -> String
 greet name = "Hello, " ++ name ++ "!"
 main :: IO ()
 main = putStrLn (greet "Tus") -- console.log
+--let max5 x = max 5 x 
+--let max5' = max 5 -- частичное примененеи функции - эквиваленто тому что выше
 
 -- Собственные операторы --------------------
 --   infix|infixr|infixl приоритет (0; 10] название оператора
@@ -57,13 +59,15 @@ a ==> b = not a || b
 --   infix : a * b * C * d === error
 
 -- Let VS Where------------------------------ https://wiki.haskell.org/Let_vs._Where
+--  В общем то одно и тоже но let сначала объявление, применение дальше
+--  а where это сначала применение потом объявление
 -- Let -----------
 sumSquare :: Int -> Int -> Int 
 sumSquare x y = x^2 + y^2
 --   with let
 sumSquareLet :: Int -> Int -> Int 
-sumSquareLet x y = let x2 = x ^ 2 
-                       y2 = y ^ 2
+sumSquareLet x y =  let x2 = x ^ 2 
+                        y2 = y ^ 2
                     in x2 + y2 
 -- Where -----------
 sumSquareWhere :: Double -> Double -> Double
@@ -75,7 +79,7 @@ sumSquareWhere a b = a2 + b2
 -- If --------------------------------
 factorial :: Integer -> Integer  --длинная арифметика 
 factorial n = if n <= 1 
-              then 1 
+              then 1 -- then обязателен 
               else n * factorial (n - 1)  
 -- Guards ----------------------------
 -- длинные if else типа case

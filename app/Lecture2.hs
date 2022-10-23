@@ -1,4 +1,5 @@
 module Lecture2 (main) where
+
 import Numeric.Natural ( Natural )
 import Lib ()
 main :: IO()
@@ -13,6 +14,8 @@ dec x = x - 1
 changeTwiceBy :: (Int -> Int) -> Int -> Int  --HOF принимает функцию и число делает из этого число
 changeTwiceBy operation value = operation (operation value) -- changeTwiceBy inc 5 -- 7
 --   changeTwiceBy (\x -> x + 1) 7 -- 9 - вместо функции можно передавать лямбду
+--   let lenVec x y = sqrt $ x * x + y * y
+--   let lenVec = \x y -> sqrt $ x * x + y * y -- еще про лямбды
 tripleApply :: (Int -> Int -> Int) -> Int -> Int 
 tripleApply f x = (x `f` x) `f` (x `f` x)
 --   tripleApply f x = f (f x x) (f x x) - same as below
@@ -54,6 +57,7 @@ flip f b a = f a b
 show2 :: Int -> Int -> String
 show2 x y = show x ++ " and " ++ show y
 -- Pattern mathcing - сопоставление с образцом
+-- принцип от частного к общему поэтому первый случай более приоритетный чем второй, второй чем 3 и т д
 fact :: Integer -> Integer  -- факториал с паттерн матчингом
 fact 0 = 1 -- отдельное тело для случая, сопоставление сверху вниз 
 fact n = n * fact (n - 1) -- вместо case 
@@ -66,6 +70,12 @@ sumList3 _         = 0
 --   dropWhile :: (a -> Bool) -> [a] -> [a]  -- свой dropwhile
 --   dropWhile _      []  = []
 --   dropWhile p l@(x:xs) = if p x then dropWhile p xs else l  -- тут локальный элиас, не поняла
+-- Когда хочется цикл ----------------
+factorial1 :: Int -> Int
+factorial1 n | n >= 0 = tipa_while 1 n  
+tipa_while :: Int -> Int -> Int
+tipa_while acc 0 = acc
+tipa_while acc n = tipa_while (acc * n) (n - 1)
 -- Расширения -----------------------------------
 --  Как подрубить
 --   in ghci
@@ -91,8 +101,9 @@ infixr 9 .
 f . g = \x -> f (g x) -- сначала применяет g к x потом f ко всему этому пример
 -- x = negate (x + 1) = negate $ x + 1 = (negate . (+1)) x =
 --  = negate . (+1) $ x но еще круче
--- incNegate :: Int -> Int - в бесточечном стиле
--- incNegate  = negate . (+1) - можно отбросить x но у меня не вышло
+--
+--incNegate :: Int -> Int -- в бесточечном стиле
+--incNegate   = negate . (+1) -- у меня не получилось
 -- Списки сахар
 -- [x | x <- [1..10], even x] = filter even [1..10]
 -- [if even x then "!" else "?" | x <- [1..5]] --["?","!","?","!","?"]

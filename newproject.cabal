@@ -39,6 +39,9 @@ executable newproject-exe
   main-is: Main.hs
   other-modules:
       Lecture1
+      Lecture2
+      Lecture3
+      Lecture4
       Style
       Paths_newproject
   hs-source-dirs:
