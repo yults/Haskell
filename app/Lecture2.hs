@@ -21,7 +21,8 @@ tripleApply f x = (x `f` x) `f` (x `f` x)
 --   tripleApply f x = f (f x x) (f x x) - same as below
 --   tripleApply (*) 3 -- 81
 --   tripleApply (\x y -> x * y) 3 -- 81
--- Polymorfizm - начнем с параметрически полиморфныt
+-- Polymorfizm - начнем с параметрически полиморфны
+-- Параметрический - Полиморфные по типу функци
 id :: a -> a  -- не важно какой тип - произвольный и пишем с маленькой буквы
 id x = x
 --  fst :: (a, b) -> a -кортежи 
@@ -31,7 +32,7 @@ emptyList = []
 repeatTree :: a -> [a]
 repeatTree x = [x, x, x] 
 --  repeatTree 7 - [7,7,7] ; repeatTree 'x' - "xxx"; repatTree True - [True, True, True]
---HOF Polimorfizm 
+--HOF Polimorfizm - полиморфные функции высшего порядка
 -- комбинаторы стандартной библиотеки
 --  map :: (a -> b) -> [a] -> [b]
 --  filter :: (a -> Bool) -> [a] -> [a]
@@ -44,7 +45,7 @@ repeatTree x = [x, x, x]
 --   zipWith max [1..5] [5,4..1] -- [5,4,3,4,5] -- пара 1 5 выбираем 5 пара 2 4 выбираем 4
 uncurry :: (a -> b -> c) -> (a, b) -> c --достаем first second из кортежа и проделывам над ними операцию
 uncurry f p = f (fst p) (snd p)  --uncurry (+) (3, 4) --7
---   curry fst 3 4 -- 3
+--   curry fst 3 4 -- 3 - сложить в кортеж и произвести операцию над ним
 --  Функции в хаскеле имеют только одну переменную и один резутат
 --   map (5+) [1..5]  -- [6, 7, 8, 9, 10]
 --   map (+5) [1..5]  -- [6, 7, 8, 9, 10]
@@ -69,7 +70,8 @@ sumList3 _         = 0
 --   map f (x:xs) = f x : map f xs -- [2, 1, 3] == 2 : 1 : 3 : []
 --   dropWhile :: (a -> Bool) -> [a] -> [a]  -- свой dropwhile
 --   dropWhile _      []  = []
---   dropWhile p l@(x:xs) = if p x then dropWhile p xs else l  -- тут локальный элиас, не поняла
+--   dropWhile p l@(x:xs) = if p x then dropWhile p xs else l  -- тут локальный элиас
+--   l - даем имя list-у чтобы удобно к нему обращаться, @ - типа знак присвоения 
 -- Когда хочется цикл ----------------
 factorial1 :: Int -> Int
 factorial1 n | n >= 0 = tipa_while 1 n  
@@ -101,7 +103,6 @@ infixr 9 .
 f . g = \x -> f (g x) -- сначала применяет g к x потом f ко всему этому пример
 -- x = negate (x + 1) = negate $ x + 1 = (negate . (+1)) x =
 --  = negate . (+1) $ x но еще круче
---
 --incNegate :: Int -> Int -- в бесточечном стиле
 --incNegate   = negate . (+1) -- у меня не получилось
 -- Списки сахар

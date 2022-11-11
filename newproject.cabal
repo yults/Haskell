@@ -38,10 +38,12 @@ library
 executable newproject-exe
   main-is: Main.hs
   other-modules:
+      Kollok
       Lecture1
       Lecture2
       Lecture3
       Lecture4
+      Lecture5
       Style
       Paths_newproject
   hs-source-dirs:

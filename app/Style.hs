@@ -1,5 +1,10 @@
 -- Рекомендации к стилизации кода
-
+module Style (main) where
+    
+import Numeric.Natural ( Natural )
+import Lib ()
+main :: IO()
+main = putStrLn "Code style"
 
 
 --  ПРОБЕЛЫ И ПУСТЫЕ СТРОКИ
